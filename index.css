@@ -1,0 +1,148 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  width: 100%;
+  background-color: #34495e;
+  color: white;
+}
+
+h1,
+h2 {
+  padding: 10px 0px;
+  text-align: center;
+}
+
+li {
+  list-style: none;
+}
+button {
+  all: unset;
+}
+
+#wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.car__wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+}
+
+.car__wrap > div {
+  width: 100vw;
+}
+
+.enter__car {
+  border-bottom: 1px solid #34495e;
+}
+
+.enter__car__input__container {
+  display: flex;
+}
+.enter__car__input {
+  all: unset;
+  width: 80%;
+  height: 50px;
+  font-size: 40px;
+}
+.enter__car__button {
+  all: unset;
+  width: 20%;
+  height: 50px;
+  text-align: center;
+  background-color: #34495e;
+  color: white;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.car__list li {
+  padding: 8px;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 3px;
+  border-top: 1px solid rgb(189, 189, 189);
+  cursor: pointer;
+}
+.car__list ul {
+  border-bottom: 1px solid rgb(189, 189, 189);
+}
+
+.car__info__panel {
+  position: absolute;
+  width: 100%;
+  height: 70vh;
+  bottom: 0px;
+
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: wheat;
+}
+.car__info__panel h3 {
+  font-size: 25px;
+}
+
+.car__info__panel span {
+  font-size: 35px;
+}
+
+.car__info__list {
+  height: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.car_info_buttons button {
+  width: 50%;
+  padding: 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  color: white;
+  cursor: pointer;
+}
+.outCar__button {
+  background-color: blue;
+}
+.cancel__button {
+  background-color: red;
+}
+.car_info_buttons {
+  width: 100%;
+  justify-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.black__screen {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.hidden {
+  display: none;
+}
