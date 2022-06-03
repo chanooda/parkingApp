@@ -9,6 +9,7 @@ const $carInfoPanel = get(".car__info__panel");
 
 const saveData = () => {
   local.setItem("carList", JSON.stringify(carList));
+  writeCarList();
 };
 
 const closePanel = (id) => {
@@ -35,8 +36,10 @@ const openCarPanel = (id) => {
   const curCar = carList[id];
   const carTime = new Date(curCar.inCarTime);
   const curTime = new Date();
-  const inCarTime = carTime.getHours() + ":" + carTime.getMinutes();
-  const outCarTime = curTime.getHours() + ":" + curTime.getMinutes();
+  const inCarTime =
+    carTime.getHours() + ":" + (carTime.getMinutes() < 10 ? "0" + carTime.getMinutes() : carTime.getMinutes());
+  const outCarTime =
+    curTime.getHours() + ":" + (curTime.getMinutes() < 10 ? "0" + curTime.getMinutes() : curTime.getMinutes());
   let parkingTime = curTime.getHours() * 60 + curTime.getMinutes() - (carTime.getHours() * 60 + carTime.getMinutes());
   let parkingMoney = 0;
 
@@ -45,11 +48,12 @@ const openCarPanel = (id) => {
   else if (parkingTime >= 30 && parkingTime < 300) parkingMoney = Math.ceil(parkingTime / 10) * 1000;
   else if (parkingTime >= 300) parkingMoney = 30000;
 
-  let str = `<span>차량 번호: ${curCar.carNumber}</span>
-  <span>입차 시간: ${inCarTime}</span>
-  <span>출차 시간: ${outCarTime}</span>
-  <span>총 주차 시간: ${parkingTime}분</span>
-  <span>요금: ${parkingMoney}원</span>`;
+  let str = `
+  <div><span>차량번호:</span><span>${curCar.carNumber}</span></div>
+  <div><span>입차시간:</span><span>${inCarTime}</span></div>
+  <div><span>출차시간:</span><span>${outCarTime}</span></div>
+  <div><span>총 주차시간:</span><span>${parkingTime}분</span></div>
+  <div><span>요금:</span><span>${parkingMoney}원</span></div>`;
 
   $carInfoList.innerHTML = str;
 
@@ -80,10 +84,10 @@ const getCar = () => {
 
     const date = new Date();
     const carNumber = get(".enter__car__input").value;
+    if (carNumber === "") return;
     const inCarTime = date;
     let car = { carNumber, inCarTime };
     carList.push(car);
-    writeCarList();
     saveData();
     get(".enter__car__input").value = "";
   });

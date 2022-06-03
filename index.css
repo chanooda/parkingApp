@@ -90,7 +90,7 @@ button {
   width: 100%;
   height: 70vh;
   bottom: 0px;
-
+  padding-top: 30px;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -101,16 +101,28 @@ button {
   font-size: 25px;
 }
 
-.car__info__panel span {
-  font-size: 35px;
+.car__info__list > div {
+  width: 100%;
+  padding: 0px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 45px;
+  font-weight: 900;
+  box-sizing: border-box;
+}
+
+.car__info__list > div > span:first-child {
+  font-size: 25px;
 }
 
 .car__info__list {
+  width: 100%;
   height: 100%;
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: center;
+  gap: 30px;
 }
 
 .car_info_buttons button {
@@ -119,15 +131,15 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 50px;
+  font-size: 45px;
   color: white;
   cursor: pointer;
 }
 .outCar__button {
-  background-color: blue;
+  background-color: rgb(50, 50, 156);
 }
 .cancel__button {
-  background-color: red;
+  background-color: rgb(172, 65, 65);
 }
 .car_info_buttons {
   width: 100%;
