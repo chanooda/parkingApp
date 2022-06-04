@@ -78,23 +78,38 @@ const writeCarList = () => {
 };
 
 const getCar = () => {
-  document.addEventListener("click", (e) => {
-    const target = e.target.className;
-    if (target !== "enter__car__button") return;
+  const date = new Date();
+  const carNumber = get(".enter__car__input").value;
+  if (carNumber === "") return;
+  const inCarTime = date;
+  let car = { carNumber, inCarTime };
+  carList.push(car);
+  saveData();
+  get(".enter__car__input").value = "";
+};
 
-    const date = new Date();
-    const carNumber = get(".enter__car__input").value;
-    if (carNumber === "") return;
-    const inCarTime = date;
-    let car = { carNumber, inCarTime };
-    carList.push(car);
-    saveData();
-    get(".enter__car__input").value = "";
+const getCarClickButton = (e) => {
+  const target = e.target.className;
+  if (target !== "enter__car__button") return;
+  getCar();
+};
+
+const getCarEnter = (e) => {
+  if (e.key !== "Enter") return;
+  getCar();
+};
+
+const getCarEvent = () => {
+  document.addEventListener("click", (e) => {
+    getCarClickButton(e);
+  });
+  document.addEventListener("keydown", (e) => {
+    getCarEnter(e);
   });
 };
 const init = () => {
   writeCarList();
-  getCar();
+  getCarEvent();
   clickCarList();
 };
 

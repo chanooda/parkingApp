@@ -143,6 +143,7 @@ button {
 }
 .car_info_buttons {
   width: 100%;
+  margin-bottom: 100px;
   justify-self: flex-end;
   display: flex;
   align-items: center;
