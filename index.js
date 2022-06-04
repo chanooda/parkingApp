@@ -4,28 +4,34 @@ const getAll = (el) => document.querySelectorAll(el);
 const local = window.localStorage;
 const carList = JSON.parse(local.getItem("carList")) || [];
 
+let carId;
+
 const $blackWindow = get(".black__screen");
 const $carInfoPanel = get(".car__info__panel");
+const $carList = get(".car__list ul");
 
 const saveData = () => {
   local.setItem("carList", JSON.stringify(carList));
   writeCarList();
 };
 
-const closePanel = (id) => {
-  document.addEventListener("click", (e) => {
-    if (!e.target.className.includes("panel__button")) return;
+const panelOutCarBtn = () => {
+  carList.splice(carId, 1);
+  $blackWindow.classList.add("hidden");
+  $carInfoPanel.classList.add("hidden");
+  saveData();
+};
 
-    if (e.target.className.includes("outCar__button")) {
-      carList.splice(carList.indexOf(id), 1);
-      $blackWindow.classList.add("hidden");
-      $carInfoPanel.classList.add("hidden");
-      saveData();
-    } else if (e.target.className.includes("cancel__button")) {
-      $blackWindow.classList.add("hidden");
-      $carInfoPanel.classList.add("hidden");
-    }
-  });
+const panelCancelBtn = () => {
+  $blackWindow.classList.add("hidden");
+  $carInfoPanel.classList.add("hidden");
+};
+
+const panelBtnEvent = () => {
+  const $outCarBtn = get(".outCar__button");
+  const $inCancelBtn = get(".cancel__button");
+  $outCarBtn.addEventListener("click", panelOutCarBtn);
+  $inCancelBtn.addEventListener("click", panelCancelBtn);
 };
 
 const openCarPanel = (id) => {
@@ -57,19 +63,18 @@ const openCarPanel = (id) => {
 
   $carInfoList.innerHTML = str;
 
-  closePanel(id);
+  carId = id;
 };
 
 const clickCarList = () => {
-  document.addEventListener("click", (e) => {
+  $carList.addEventListener("click", (e) => {
     if (e.target.className !== "car__list__car") return;
-    const carId = e.target.dataset.id;
-    openCarPanel(carId);
+    const id = e.target.dataset.id;
+    openCarPanel(id);
   });
 };
 
 const writeCarList = () => {
-  const $carList = get(".car__list ul");
   let str = "";
   carList.map((el, i) => {
     str += `<li class="car__list__car" data-id=${i}>${el.carNumber}</li>`;
@@ -100,7 +105,8 @@ const getCarEnter = (e) => {
 };
 
 const getCarEvent = () => {
-  document.addEventListener("click", (e) => {
+  const $enterCarBtn = get(".enter__car__button");
+  $enterCarBtn.addEventListener("click", (e) => {
     getCarClickButton(e);
   });
   document.addEventListener("keydown", (e) => {
@@ -111,6 +117,7 @@ const init = () => {
   writeCarList();
   getCarEvent();
   clickCarList();
+  panelBtnEvent();
 };
 
 document.addEventListener("DOMContentLoaded", () => {
