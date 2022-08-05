@@ -43,9 +43,9 @@ const openCarPanel = (id) => {
   const carTime = new Date(curCar.inCarTime);
   const curTime = new Date();
   const inCarTime =
-    carTime.getHours() + ":" + (carTime.getMinutes() < 5 ? "0" + carTime.getMinutes() : carTime.getMinutes());
+    carTime.getHours() + ":" + (carTime.getMinutes() < 10 ? "0" + carTime.getMinutes() : carTime.getMinutes());
   const outCarTime =
-    curTime.getHours() + ":" + (curTime.getMinutes() < 5 ? "0" + curTime.getMinutes() : curTime.getMinutes());
+    curTime.getHours() + ":" + (curTime.getMinutes() < 10 ? "0" + curTime.getMinutes() : curTime.getMinutes());
   let parkingTime = curTime.getHours() * 60 + curTime.getMinutes() - (carTime.getHours() * 60 + carTime.getMinutes());
   let parkingMoney = 0;
 
