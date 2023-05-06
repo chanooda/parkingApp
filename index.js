@@ -49,8 +49,7 @@ const openCarPanel = (id) => {
   let parkingTime = curTime.getHours() * 60 + curTime.getMinutes() - (carTime.getHours() * 60 + carTime.getMinutes());
   let parkingMoney = 0;
 
-  if (5 > parkingTime) parkingMoney = 0;
-  else if (5 <= parkingTime && parkingTime <= 30) parkingMoney = 3000;
+  if (0 <= parkingTime && parkingTime <= 30) parkingMoney = 3000;
   else if (parkingTime >= 30 && parkingTime < 300) parkingMoney = Math.ceil(parkingTime / 10) * 1000;
   else if (parkingTime >= 300) parkingMoney = 30000;
 
